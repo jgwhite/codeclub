@@ -7,7 +7,7 @@ import startApp from 'codeclub/tests/helpers/start-app';
 
 var application;
 
-module('Acceptance: Signing in', {
+module('Acceptance: Authentication', {
   beforeEach: function() {
     Firebase.prototype.authWithPassword = (credentials, callback) => {
       callback(null, 'authData');
@@ -20,7 +20,7 @@ module('Acceptance: Signing in', {
   }
 });
 
-test('succesfully', function(assert) {
+test('success', function(assert) {
   visit('/');
   fillIn('input[name="email"]', 'hello@example.com');
   fillIn('input[name="password"]', 'password');
