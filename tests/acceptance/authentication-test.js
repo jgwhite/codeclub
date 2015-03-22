@@ -1,8 +1,5 @@
 import Ember from 'ember';
-import {
-  module,
-  test
-} from 'qunit';
+import { module, test } from 'qunit';
 import startApp from 'codeclub/tests/helpers/start-app';
 
 let application;
@@ -39,17 +36,5 @@ test('success', function(assert) {
   andThen(() => {
     assert.ok(find(':contains("Logged in")').length,
       'expected to see "Logged in"');
-  });
-});
-
-test('logout', function(assert) {
-  firebase.changeAuthState({ uid: 'testUid' });
-  firebase.flush();
-
-  visit('/');
-  click('button:contains("Log out")');
-  andThen(function(){
-    assert.ok(find(':contains("Email:")').length,
-      'expected to see the login form');
   });
 });
