@@ -8,5 +8,16 @@ export default Ember.Route.extend({
     if (!firebase.getAuth()) {
       this.transitionTo('authenticate');
     }
+  },
+
+  actions: {
+
+    logout: function(){
+      let application = this.container.lookup('application:main');
+      let firebase = application.get('firebase');
+
+      firebase.unauth();
+      this.transitionTo('authenticate');
+    }
   }
 });

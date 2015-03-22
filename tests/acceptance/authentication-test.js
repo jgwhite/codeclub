@@ -38,3 +38,16 @@ test('success', function(assert) {
       'expected to see "Logged in"');
   });
 });
+
+
+test("logout", function(assert){
+  firebase.changeAuthState({ uid: 'testUid' });
+  firebase.flush();
+
+  visit('/');
+  click('button:contains("Log out")');
+  andThen(function(){
+    assert.ok(find(':contains("Email:")').length,
+      'expected to see The Login Form');
+  });
+});
