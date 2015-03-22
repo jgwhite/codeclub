@@ -4,6 +4,7 @@ module.exports = function(environment) {
   var ENV = {
     modulePrefix: 'codeclub',
     environment: environment,
+    firebase: 'https://codeclub.firebaseio.com/',
     baseURL: '/',
     locationType: 'auto',
     EmberENV: {
