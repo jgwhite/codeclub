@@ -23,9 +23,12 @@ test('success', function(assert) {
   firebase.authWithPassword = (credentials, callback) => {
     assert.equal(credentials.email, 'hello@example.com');
     assert.equal(credentials.password, 'password');
+
     let authData = { uid: 'testUid' };
+
     firebase.changeAuthState(authData);
     firebase.flush();
+
     callback(null, authData);
   };
 
@@ -40,7 +43,7 @@ test('success', function(assert) {
 });
 
 
-test("logout", function(assert){
+test('logout', function(assert) {
   firebase.changeAuthState({ uid: 'testUid' });
   firebase.flush();
 
@@ -48,6 +51,6 @@ test("logout", function(assert){
   click('button:contains("Log out")');
   andThen(function(){
     assert.ok(find(':contains("Email:")').length,
-      'expected to see The Login Form');
+      'expected to see the login form');
   });
 });
