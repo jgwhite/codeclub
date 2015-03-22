@@ -23,7 +23,10 @@ test('success', function(assert) {
   firebase.authWithPassword = (credentials, callback) => {
     assert.equal(credentials.email, 'hello@example.com');
     assert.equal(credentials.password, 'password');
-    callback(null, 'auth data');
+    let authData = { uid: 'testUid' };
+    firebase.changeAuthState(authData);
+    firebase.flush();
+    callback(null, authData);
   };
 
   visit('/');

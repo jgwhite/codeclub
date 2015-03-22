@@ -1,0 +1,13 @@
+{{#x-form onsubmit="authenticate" as |form|}}
+  <label>
+    Email:
+    {{input type="email" name="email" value=form.email}}
+  </label>
+
+  <label>
+    Password:
+    {{input type="password" name="password" value=form.password}}
+  </label>
+
+  <button type="submit">Log in</button>
+{{/x-form}}
