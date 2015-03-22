@@ -1,15 +1,24 @@
 import Ember from 'ember';
 
+let { inject } = Ember;
+
 export default Ember.Route.extend({
+  firebase: inject.service(),
+
   beforeModel() {
-    if (!this.firebase.getAuth()) {
+    let firebase = this.get('firebase');
+
+    if (!firebase.getAuth()) {
       this.transitionTo('authenticate');
     }
   },
 
   actions: {
     logout() {
-      this.firebase.unauth();
+      let firebase = this.get('firebase');
+
+      firebase.unauth();
+
       this.transitionTo('authenticate');
     }
   }
