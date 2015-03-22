@@ -20,9 +20,9 @@ module('Acceptance: Authentication', {
 });
 
 test('success', function(assert) {
-  firebase.authWithPassword = (credentials, callback) => {
-    assert.equal(credentials.email, 'hello@example.com');
-    assert.equal(credentials.password, 'password');
+  firebase.authWithPassword = ({ email, password }, callback) => {
+    assert.equal(email, 'hello@example.com');
+    assert.equal(password, 'password');
 
     let authData = { uid: 'testUid' };
 
@@ -41,7 +41,6 @@ test('success', function(assert) {
       'expected to see "Logged in"');
   });
 });
-
 
 test('logout', function(assert) {
   firebase.changeAuthState({ uid: 'testUid' });
