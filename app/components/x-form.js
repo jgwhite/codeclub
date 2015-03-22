@@ -10,14 +10,10 @@ export default Component.extend({
   }),
 
   submit(event) {
+    event.preventDefault();
+
     let model = this.get('model');
 
-    event.preventDefault();
     this.sendAction('onsubmit', model);
-    this.resetModel();
-  },
-
-  resetModel() {
-    this.set('model', {});
   }
 });
