@@ -9,9 +9,6 @@ var application;
 
 module('Acceptance: Authentication', {
   beforeEach: function() {
-    Firebase.prototype.authWithPassword = (credentials, callback) => {
-      callback(null, 'authData');
-    };
     application = startApp();
   },
 
@@ -21,6 +18,16 @@ module('Acceptance: Authentication', {
 });
 
 test('success', function(assert) {
+  let container = application.__container__;
+  let adapter = container.lookup('adapter:application');
+  let firebase = adapter.get('firebase');
+
+  firebase.authWithPassword = (credentials, callback) => {
+    assert.equal(credentials.email, 'hello@example.com');
+    assert.equal(credentials.password, 'password');
+    callback(null, 'auth data');
+  };
+
   visit('/');
   fillIn('input[name="email"]', 'hello@example.com');
   fillIn('input[name="password"]', 'password');
