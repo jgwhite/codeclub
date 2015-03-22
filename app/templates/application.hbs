@@ -1,13 +1,17 @@
-<form {{action "authenticate"}}>
-  <label>
-    Email:
-    {{input type="email" name="email" value=email}}
-  </label>
+{{#if authenticated}}
+  <p>Logged in</p>
+{{else}}
+  <form {{action "authenticate"}}>
+    <label>
+      Email:
+      {{input type="email" name="email" value=email}}
+    </label>
 
-  <label>
-    Password:
-    {{input type="password" name="password" value=password}}
-  </label>
+    <label>
+      Password:
+      {{input type="password" name="password" value=password}}
+    </label>
 
-  <button type="submit">Log in</button>
-</form>
+    <button type="submit">Log in</button>
+  </form>
+{{/if}}

@@ -9,6 +9,9 @@ var application;
 
 module('Acceptance: Signing in', {
   beforeEach: function() {
+    Firebase.prototype.authWithPassword = (credentials, callback) => {
+      callback(null, 'authData');
+    };
     application = startApp();
   },
 
