@@ -1,7 +1,13 @@
-import config from '../config/environment';
-import Firebase from 'firebase';
+import Ember from 'ember';
 import FirebaseAdapter from 'emberfire/adapters/firebase';
 
+let { computed } = Ember;
+
 export default FirebaseAdapter.extend({
-  firebase: new Firebase(config.firebase)
+  firebase: computed(function() {
+    let application = this.container.lookup('application:main');
+    let firebase = application.get('firebase');
+
+    return firebase;
+  })
 });

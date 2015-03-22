@@ -5,8 +5,8 @@ export default Ember.Route.extend({
     authenticate() {
       let controller = this.controllerFor('application');
       let credentials = controller.getProperties('email', 'password');
-      let adapter = this.container.lookup('adapter:application');
-      let firebase = adapter.get('firebase');
+      let application = this.container.lookup('application:main');
+      let firebase = application.get('firebase');
 
       firebase.authWithPassword(credentials, error => {
         if (error) {

@@ -5,11 +5,13 @@ import {
 } from 'qunit';
 import startApp from 'codeclub/tests/helpers/start-app';
 
-var application;
+let application;
+let firebase;
 
 module('Acceptance: Authentication', {
   beforeEach: function() {
-    application = startApp();
+    firebase = new MockFirebase();
+    application = startApp({ firebase: firebase });
   },
 
   afterEach: function() {
@@ -18,10 +20,6 @@ module('Acceptance: Authentication', {
 });
 
 test('success', function(assert) {
-  let container = application.__container__;
-  let adapter = container.lookup('adapter:application');
-  let firebase = adapter.get('firebase');
-
   firebase.authWithPassword = (credentials, callback) => {
     assert.equal(credentials.email, 'hello@example.com');
     assert.equal(credentials.password, 'password');
