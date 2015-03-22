@@ -4,6 +4,7 @@ module.exports = function(environment) {
   var ENV = {
     modulePrefix: 'codeclub',
     environment: environment,
+    contentSecurityPolicy: { 'connect-src': "'self' wss://*.firebaseio.com" },
     firebase: 'https://codeclub.firebaseio.com/',
     baseURL: '/',
     locationType: 'auto',
