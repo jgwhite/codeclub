@@ -1,3 +1,13 @@
-<h2 id="title">Welcome to Ember.js</h2>
+<form {{action "authenticate"}}>
+  <label>
+    Email:
+    {{input type="email" name="email" value=email}}
+  </label>
 
-{{outlet}}
+  <label>
+    Password:
+    {{input type="password" name="password" value=password}}
+  </label>
+
+  <button type="submit">Log in</button>
+</form>
