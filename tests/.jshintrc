@@ -22,7 +22,8 @@
     "currentURL",
     "currentPath",
     "currentRouteName",
-    "Firebase"
+    "Firebase",
+    "MockFirebase"
   ],
   "node": false,
   "browser": false,
