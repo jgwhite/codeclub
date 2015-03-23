@@ -1,17 +1,21 @@
 import Ember from 'ember';
 
-let { inject } = Ember;
+const { inject } = Ember;
 
 export default Ember.Route.extend({
   firebase: inject.service(),
+  flashes: inject.service('flash-messages'),
 
   actions: {
     authenticate(credentials) {
       let firebase = this.get('firebase');
+      let flashes = this.get('flashes');
+
+      flashes.info('Authenticating');
 
       firebase.authWithPassword(credentials, error => {
         if (error) {
-          console.error('Failed to authenticate', error);
+          flashes.warning(error.message);
         } else {
           this.transitionTo('authenticated');
         }

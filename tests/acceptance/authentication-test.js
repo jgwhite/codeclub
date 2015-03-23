@@ -38,3 +38,19 @@ test('success', function(assert) {
       'expected to see "Logged in"');
   });
 });
+
+test('failure', function(assert) {
+  firebase.authWithPassword = (_, callback) => {
+    let error = new Error('The specified password is incorrect');
+    callback(error);
+  };
+
+  visit('/');
+  fillIn('input[name="email"]', 'hello@example.com');
+  fillIn('input[name="password"]', 'password');
+  click('button:contains("Log in")');
+  andThen(() => {
+    assert.ok(find(':contains("The specified password is incorrect")').length,
+      'expected to see "The specified password is incorrect"');
+  });
+});
