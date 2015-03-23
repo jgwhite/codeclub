@@ -1,6 +1,6 @@
 import Ember from 'ember';
 
-let { inject } = Ember;
+const { inject } = Ember;
 
 export default Ember.Route.extend({
   firebase: inject.service(),
