@@ -1,9 +1,9 @@
 import Ember from 'ember';
 import { module, test } from 'qunit';
-import startApp from 'codeclub/tests/helpers/start-app';
+import startApp from '../helpers/start-app';
 
-let application;
 let firebase;
+let application;
 
 module('Acceptance: Authentication', {
   beforeEach: function() {
